@@ -44,6 +44,9 @@ nginx_revproxy_sites:                                         # List of sites to
     upstreams:                                                # List of Upstreams
       - { backend_address: 192.168.0.200, backend_port: 80 }
       - { backend_address: 192.168.0.201, backend_port: 8080 }
+    proxy_directives:                                         # List of custom directives for the proxy configuration
+      - { proxy_hide_header: Content-Security-Policy }
+      - { proxy_set_header: Content-Security-Policy "frame-ancestors 'none';" }
     listen: 9000                                              # Specify which port you want to listen to with clear HTTP, or leave undefined for 80
     listen_ssl: 9001                                          # Specify which port you want to listen to with HTTPS, or leave undefined for 443
     ssl: true                                                 # Set to True if you want to redirect http to https
