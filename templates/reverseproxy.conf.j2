@@ -39,8 +39,8 @@ server {
       proxy_set_header X-Frame-Options SAMEORIGIN;
       proxy_pass http://{{ item.key }}_backend;
 {% if item.value.proxy_directives is defined %}
-{% for directive in item.value.proxy_directives %}
-	  {{ directive.key }} {{ directive.value }};
+{% for directive_key, directive_value in item.value.proxy_directives.items() %}
+	  {{ directive_key }} {{ directive_value }};
 {% endfor %}
 {% endif %}
 
