@@ -102,8 +102,10 @@ server {
       proxy_pass {{ item.value.backend_protocol | default('http') }}://{{ item.key }}_backend;
       proxy_redirect http:// $scheme://;
 {% if item.value.proxy_directives is defined %}
-{% for directive_key, directive_value in item.value.proxy_directives.items() %}
+{% for directive in item.value.proxy_directives %}
+{% for directive_key, directive_value in directives.items() %}
 	  {{ directive_key }} {{ directive_value }};
+{% endfor %}
 {% endfor %}
 {% endif %}
 {% if item.value.auth is defined %}
