@@ -103,7 +103,7 @@ server {
       proxy_redirect http:// $scheme://;
 {% if item.value.proxy_directives is defined %}
 {% for directive in item.value.proxy_directives %}
-{% for directive_key, directive_value in directives.items() %}
+{% for directive_key, directive_value in directive.items() %}
 	  {{ directive_key }} {{ directive_value }};
 {% endfor %}
 {% endfor %}
